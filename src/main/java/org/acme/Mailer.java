@@ -27,7 +27,8 @@ public class Mailer {
 
     public void sendMessage(){
 
-        final String password = "0910326116";
+        final String password = "Spartak.1998";
+        final String userName = "richardzaduban.development@gmail.com";
         Properties props = new Properties();
         props.setProperty("mail.transport.protocol", "smtp");     
         props.setProperty("mail.host", "smtp.gmail.com");  
@@ -38,7 +39,7 @@ public class Mailer {
         Authenticator authenticator = new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("zadubanr2@gmail.com", password);
+                return new PasswordAuthentication(userName, password);
             }
         };
         Session session = Session.getDefaultInstance(props,authenticator);
@@ -52,7 +53,7 @@ public class Mailer {
      
             // Send message 
             //Transport transport = session.getTransport("smtp");
-            //transport.connect("zadubanr2@gmail.com", "0910326116"); 
+            //transport.connect();
             Transport.send(message);
             //transport.close();
             System.out.println("message sent successfully...."); 

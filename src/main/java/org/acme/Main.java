@@ -4,7 +4,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import com.webcerebrium.binance.api.BinanceApiException;
+import io.quarkus.runtime.annotations.QuarkusMain;
 
+@QuarkusMain
 public class Main {
     public static void main(String[] args) throws URISyntaxException, BinanceApiException {
     DataClient c = new DataClient(new URI(

@@ -50,7 +50,7 @@ public class DataClient extends WebSocketClient {
         String semi_clean = raw.replaceAll("\"", "");
         double clean = Double.parseDouble(semi_clean.replaceAll(":", ""));
         Account account = new Account();
-        // System.out.println(clean);
+        System.out.println(clean);
         quantity = calculateQuantity(orderPrice, clean);
 
         // TODO When an how call setFirstOrders when orderCount = 0
@@ -69,13 +69,14 @@ public class DataClient extends WebSocketClient {
             System.out.println("First buy at: " + firstBuy);
             System.out.println("First sell at: " + firstSell);
             try {
-                account.makeOrder("buy", buy, quantity);
-                account.makeOrder("sell", sell, quantity);
+                account.makeBuyOrder(firstBuy, quantity);
+                account.makeSellOrder(firstSell, quantity);
+                System.out.println("First orders was created");
             } catch (BinanceApiException e) {
                 e.printStackTrace();
             }
 
-            String text = String.valueOf(quantity) + " of ADA was bought at the price of " + String.valueOf(firstBuy) + "\n" + "this qantity will be sold at price of " + String.valueOf(firstSell);
+            String text = quantity + " of ADA was bought at the price of " + firstBuy + "\n" + "this qantity will be sold at price of " + firstSell;
             Mailer mail = new Mailer(from,to,header,text);
             mail.sendMessage();
 
@@ -83,20 +84,20 @@ public class DataClient extends WebSocketClient {
             firstOrder = false;
             firstOrders.clear();
         }
-        if (firstOrder == false & (lastBuy <= clean * 0.998) | (lastBuy >= clean * 1.002 )) {
+        if (firstOrder == false & (lastBuy <= clean * 0.998)) {
 
             setOrders(lastBuy, 0.04);
             buy = orders.get("buy");
             sell = orders.get("sell");
             
             try {
-                account.makeOrder("buy", buy, quantity);
-                account.makeOrder("sell", sell, quantity);
+                account.makeBuyOrder(buy, quantity);
+                account.makeSellOrder(sell, quantity);
             } catch (BinanceApiException e) {
                 e.printStackTrace();
             }
 
-            String text = String.valueOf(quantity) + " of ADA was bought at the price of " + String.valueOf(buy) + "\n" + "this qantity will be sold at price of " + String.valueOf(sell);
+            String text = quantity + " of ADA was bought at the price of " + buy + "\n" + "this qantity will be sold at price of " + sell;
             Mailer mail = new Mailer(from,to,header,text);
             mail.sendMessage();
             lastBuy = buy;
