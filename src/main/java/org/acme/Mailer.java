@@ -27,8 +27,8 @@ public class Mailer {
 
     public void sendMessage(){
 
-        final String password = "Spartak.1998";
-        final String userName = "richardzaduban.development@gmail.com";
+        final String password = "";
+        final String userName = "";
         Properties props = new Properties();
         props.setProperty("mail.transport.protocol", "smtp");     
         props.setProperty("mail.host", "smtp.gmail.com");  
@@ -52,7 +52,7 @@ public class Mailer {
             message.setText(text);  
      
             // Send message 
-            //Transport transport = session.getTransport("smtp");
+            // Transport transport = session.getTransport("smtp");
             //transport.connect();
             Transport.send(message);
             //transport.close();

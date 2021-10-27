@@ -16,8 +16,8 @@ import static java.lang.Math.round;
 
 public class Account {
 
-    private String apiKey = "xsrZ5aByrcx333aBGQ0jKJF5Nmx0Z6Eh9RnW0ciXdJvxHyshQN69zX6WsKyewrk1";
-    private String apiSecret = "Tt3WPMMsYYjsW1m1A2h1s9VcyrFPiQK8xrFvWtQWevQVI8YGQNVwBdoAl5r2eeDs";
+    private String apiKey = "";
+    private String apiSecret = "";
     
     //TODO get orders and count
     public List<BinanceOrder> getOrders() throws BinanceApiException {

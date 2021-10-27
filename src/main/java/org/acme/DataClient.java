@@ -15,9 +15,9 @@ public class DataClient extends WebSocketClient {
 
     private ArrayList<Double> datas = new ArrayList<>();
     private boolean alert = true;
-    private double price_alert = 0.65;
-    private String from = "zadubanr2@gmail.com";
-    private String to = "zadubanr2@gmail.com";
+    private double price_alert;
+    private String from = "";
+    private String to = "";
     private String header = "New Binance orders";
     private double midPrice;
     //private int orderCounter = 0;
